@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 
 	<flow name="watamulesoftFlow" doc:id="0ea33ceb-e030-4069-9603-e06d4a115ce1" >
 		<http:listener doc:name="Listener" doc:id="9172ef08-9ded-433e-b9ca-923863d612d3" config-ref="HTTP_Listener_config" path="/demo"/>
-		<logger level="INFO" doc:name="Logger" doc:id="c90eb127-2544-42b4-872d-e8fa01b128d5" message="control 01"/>
+		<logger level="INFO" doc:name="Logger - 01" doc:id="c90eb127-2544-42b4-872d-e8fa01b128d5" message="control 01"/>
 		<ee:transform doc:name="Transform Message" doc:id="5abd3a5c-5d91-4b5f-ba5a-f596c39fe396" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -19,6 +19,6 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<logger level="INFO" doc:name="Logger" doc:id="6930ca42-cd44-4c2c-81dd-142e851d73ca" message="control 02"/>
+		<logger level="INFO" doc:name="Logger - 02" doc:id="6930ca42-cd44-4c2c-81dd-142e851d73ca" message="control 02"/>
 	</flow>
 </mule>
