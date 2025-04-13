@@ -5,9 +5,7 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="eb0c9659-88c5-4c45-aab1-cd0308e84c79" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
-	</http:listener-config>
+
 	<flow name="watamulesoftFlow" doc:id="0ea33ceb-e030-4069-9603-e06d4a115ce1" >
 		<http:listener doc:name="Listener" doc:id="9172ef08-9ded-433e-b9ca-923863d612d3" config-ref="HTTP_Listener_config" path="/demo"/>
 		<logger level="INFO" doc:name="Logger" doc:id="c90eb127-2544-42b4-872d-e8fa01b128d5" message="control 01"/>
