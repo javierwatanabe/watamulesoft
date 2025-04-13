@@ -7,7 +7,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 
 	<flow name="watamulesoftFlow" doc:id="0ea33ceb-e030-4069-9603-e06d4a115ce1" >
-		<http:listener doc:name="Listener" doc:id="9172ef08-9ded-433e-b9ca-923863d612d3" config-ref="HTTP_Listener_config" path="/demo"/>
+		<http:listener doc:name="Listener" doc:id="9172ef08-9ded-433e-b9ca-923863d612d3" config-ref="GlobalConfig_HTTP_Listener" path="/principal"/>
 		<logger level="INFO" doc:name="Logger - 01" doc:id="c90eb127-2544-42b4-872d-e8fa01b128d5" message="control 01"/>
 		<ee:transform doc:name="Transform Message" doc:id="5abd3a5c-5d91-4b5f-ba5a-f596c39fe396" >
 			<ee:message >

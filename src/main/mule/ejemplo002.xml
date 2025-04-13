@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+<flow name="ejemplo002Flow" doc:id="01fc870e-28d4-46af-840f-4d987c8543d2" >
+        <http:listener doc:name="Listener" doc:id="3554243d-74df-457c-b542-a255381891ec" config-ref="GlobalConfig_HTTP_Listener" path="/ejemplo002" allowedMethods="GET"/>
+        <logger level="INFO" doc:name="Logger1" doc:id="9e6c61fa-8734-4626-a430-2db3a22283fc" message="ejemplo002 - log1"/>
+
+        <choice doc:name="Choice" doc:id="d9354066-1d73-4bef-a3ff-4e7f049ca12d">
+            <when expression="#[attributes.queryParams.opcion == '1']">
+                <ee:transform doc:name="TM_ Option_1" doc:id="b2d9ff91-f227-4872-87f8-8692d8bbc320">
+                    <ee:message >
+                        <ee:set-payload ><![CDATA[%dw 2.0 
+output application/json 
+--- 
+{ 
+	"message":"Hello Mule!!!!" 
+}]]></ee:set-payload>
+                    </ee:message>
+                </ee:transform>
+                <logger level="INFO" doc:name="LoggerOption1" doc:id="5857fcd7-815b-413b-962a-f80c9e6bac4c" message="ejemplo002 - Option 1"/>
+            </when>
+            <when expression="#[attributes.queryParams.opcion == '2']">
+                <ee:transform doc:name="TM_ Option_2" doc:id="3b4f5bc6-071b-4b51-8891-842f963de7ce">
+                    <ee:message >
+                        <ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+---
+{
+    root: {
+        message: "Option 2 Selected"
+    }
+}]]></ee:set-payload>
+                    </ee:message>
+                </ee:transform>
+                <logger level="INFO" doc:name="LoggerOption2" doc:id="ead649b5-1a1d-446e-80d0-a9d650aa03de" message="ejemplo002 - Option 2"/>
+            </when>
+            <otherwise>
+                <ee:transform doc:name="TM_Default" doc:id="84c9be79-fd77-4451-95a7-075bf619845e">
+                    <ee:message >
+                        <ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+---
+{
+    root: {
+        message: "Invalid Option"
+    }
+}]]></ee:set-payload>
+                    </ee:message>
+                </ee:transform>
+                <logger level="WARN" doc:name="LoggerDefault" doc:id="ff3918ca-2538-4161-a521-a76f2caa2677" message="ejemplo002 - Invalid Option"/>
+            </otherwise>
+        </choice>
+
+        <logger level="INFO" doc:name="Logger2" doc:id="59e8e0d4-4ab3-4ced-bb92-11e682e56011" message="ejemplo002 - log2"/>
+    </flow>
+</mule>
